@@ -105,12 +105,12 @@ public class Calculator {
     }
 }
 ```
--   Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.
 
+-   Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.
 
 -   A class is closed, since it may be compiled, stored in a library, baselined, and used by client classes. But it is also open, since any new class may use it as parent, adding new features. When a descendant class is defined, there is no need to change the original or to disturb its clients.
 
-## 3. Liskov substitution principle
+## 3. Liskov substitution principle (LSP)
 
 > `A class should be substitutable for its subclasses.` If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.
 
@@ -120,6 +120,7 @@ public abstract class Account {
     protected abstract void withdraw(BigDecimal amount);
 }
 ```
+
 ```
 public class SavingAccount extends Account {
     @Override
@@ -133,6 +134,7 @@ public class SavingAccount extends Account {
     }
 }
 ```
+
 ```
 public class FixedTermDepositAccount extends Account {
     @Override
@@ -146,6 +148,7 @@ public class FixedTermDepositAccount extends Account {
     }
 }
 ```
+
 ```
 Account myFixedTermDepositAccount = new FixedTermDepositAccount();
 myFixedTermDepositAccount.deposit(new BigDecimal(1000.00));
@@ -153,15 +156,80 @@ myFixedTermDepositAccount.deposit(new BigDecimal(1000.00));
 Account mySavingAccount = new SavingAccount();
 mySavingAccount.withdraw(new BigDecimal(100.00));
 ```
-- As we see in above example, FixedTermDepositAccount is substitutable for Account.
-- mySavingAccount is substitutable for Account.
 
+-   As we see in above example, FixedTermDepositAccount is substitutable for Account.
+-   mySavingAccount is substitutable for Account.
 
-## 4. Interface segregation principle
+## 4. Interface segregation principle (ISP)
 
 > `Large interfaces should be made up of small interfaces.` This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
 
 
+```
+public interface Payment {
+    Object status();
+    List<Object> getPayments();
+}
+```
+
+```
+public interface Bank extends Payment {
+    void initiatePayments();
+}
+
+public interface Loan extends Payment {
+    void intiateLoanSettlement();
+    void initiateRePayment();
+}
+```
+
+```
+public class BankPayment implements Bank {
+
+    @Override
+    public void initiatePayments() {
+        // ...
+    }
+
+    @Override
+    public Object status() {
+        // ...
+    }
+
+    @Override
+    public List<Object> getPayments() {
+        // ...
+    }
+}
+```
+
+```
+public class LoanPayment implements Loan {
+
+    @Override
+    public void intiateLoanSettlement() {
+        // ...
+    }
+
+    @Override
+    public void initiateRePayment() {
+        // ...
+    }
+
+    @Override
+    public Object status() {
+        // ...
+    }
+
+    @Override
+    public List<Object> getPayments() {
+        // ...
+    }
+}
+```
+![image](https://www.baeldung.com/wp-content/uploads/2020/07/interface_segregation_fixed.png)
+
+- As we can see, the interfaces don't violate the principle. The implementations don't have to provide empty methods. This keeps the code clean and reduces the chance of bugs.
 
 ## 5. Dependency inversion principle
 
