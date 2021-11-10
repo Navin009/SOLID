@@ -112,11 +112,56 @@ public class Calculator {
 
 ## 3. Liskov substitution principle
 
-> `A class should be substitutable for its subclasses.` This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
+> `A class should be substitutable for its subclasses.` If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.
+
+```
+public abstract class Account {
+    protected abstract void deposit(BigDecimal amount);
+    protected abstract void withdraw(BigDecimal amount);
+}
+```
+```
+public class SavingAccount extends Account {
+    @Override
+    protected void deposit(BigDecimal amount) {
+        // deposit logic
+    }
+
+    @Override
+    protected void withdraw(BigDecimal amount) {
+        // withdraw logic
+    }
+}
+```
+```
+public class FixedTermDepositAccount extends Account {
+    @Override
+    protected void deposit(BigDecimal amount) {
+        // Deposit into this account
+    }
+
+    @Override
+    protected void withdraw(BigDecimal amount) {
+        throw new UnsupportedOperationException("Withdrawals are not supported by FixedTermDepositAccount!!");
+    }
+}
+```
+```
+Account myFixedTermDepositAccount = new FixedTermDepositAccount();
+myFixedTermDepositAccount.deposit(new BigDecimal(1000.00));
+
+Account mySavingAccount = new SavingAccount();
+mySavingAccount.withdraw(new BigDecimal(100.00));
+```
+- As we see in above example, FixedTermDepositAccount is substitutable for Account.
+- mySavingAccount is substitutable for Account.
+
 
 ## 4. Interface segregation principle
 
 > `Large interfaces should be made up of small interfaces.` This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
+
+
 
 ## 5. Dependency inversion principle
 
