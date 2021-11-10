@@ -231,12 +231,70 @@ public class LoanPayment implements Loan {
 
 - As we can see, the interfaces don't violate the principle. The implementations don't have to provide empty methods. This keeps the code clean and reduces the chance of bugs.
 
-## 5. Dependency inversion principle
+## 5. Dependency inversion principle (DIP)
 
-> `High-level modules should not depend on low-level modules. Both should depend on abstractions.` This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
+> `High-level modules should not depend on low-level modules. Abstractions should not depend on details. Details should depend on abstractions.` This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
+
+```
+public class CustomerService {
+
+    private final CustomerDao customerDao;
+
+    // standard constructor / getter
+
+    public Optional<Customer> findById(int id) {
+        return customerDao.findById(id);
+    }
+
+    public List<Customer> findAll() {
+        return customerDao.findAll();
+    }
+}
+```
+```
+public interface CustomerDao {
+
+    Optional<Customer> findById(int id);
+
+    List<Customer> findAll();
+
+}
+```
+```
+public class SimpleCustomerDao implements CustomerDao {
+
+    // standard constructor / getter
+
+    @Override
+    public Optional<Customer> findById(int id) {
+        return Optional.ofNullable(customers.get(id));
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        return new ArrayList<>(customers.values());
+    }
+}
+```
+![image](https://www.baeldung.com/wp-content/uploads/2019/04/direct-dip.png)
+
+#### Another Example
+
+![image](https://www.baeldung.com/wp-content/uploads/2019/04/alternative-dip.png)
+
+- Another example of DIP is the `CustomerService` class. It has a dependency on `CustomerDao` class.
+- SimpleCustomerDao depends on CustomerDao on the implementation.
 
 ## References
 
 1. [SOLID by bmc](https://www.bmc.com/blogs/solid-design-principles/)
 2. [SOLD by Visualstudiomagazine](https://visualstudiomagazine.com/articles/2013/04/01/solid-agile-development.aspx)
 3. [Single responsibility principle](https://www.baeldung.com/java-single-responsibility-principle)
+
+3. [Open-closed principle](https://www.baeldung.com/java-open-closed-principle)
+
+4. [Liskov substitution principle](https://www.baeldung.com/java-liskov-substitution-principle)
+
+5. [Interface segregation principle](https://www.baeldung.com/java-interface-segregation)
+
+6. [Dependency Inversion Principle](https://www.baeldung.com/java-dependency-inversion-principle)
