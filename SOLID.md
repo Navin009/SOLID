@@ -1,5 +1,3 @@
-# SOLID
-
 SOLID is a popular set of design principles that are used in object-oriented software development. It
 intends to make software designs more understandable, flexible, and maintainable.
 
@@ -8,7 +6,7 @@ intends to make software designs more understandable, flexible, and maintainable
 > 1.  **S**ingle responsibility principle
 > 2.  **O**pen-closed principle
 > 3.  **L**iskov substitution principle
-> 4.  **I**nterface segregation principle
+> 4.  **I**ntegration principle
 > 5.  **D**ependency inversion principle
 
 ## 1. Single responsibility principle (SRP)
@@ -164,7 +162,6 @@ mySavingAccount.withdraw(new BigDecimal(100.00));
 
 > `Large interfaces should be made up of small interfaces.` This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
 
-
 ```
 public interface Payment {
     Object status();
@@ -227,9 +224,10 @@ public class LoanPayment implements Loan {
     }
 }
 ```
+
 ![image](https://www.baeldung.com/wp-content/uploads/2020/07/interface_segregation_fixed.png)
 
-- As we can see, the interfaces don't violate the principle. The implementations don't have to provide empty methods. This keeps the code clean and reduces the chance of bugs.
+-   As we can see, the interfaces don't violate the principle. This implementations don't have to provide empty methods. This keeps the code clean and reduces the chance of bugs.
 
 ## 5. Dependency inversion principle (DIP)
 
@@ -251,6 +249,7 @@ public class CustomerService {
     }
 }
 ```
+
 ```
 public interface CustomerDao {
 
@@ -260,6 +259,7 @@ public interface CustomerDao {
 
 }
 ```
+
 ```
 public class SimpleCustomerDao implements CustomerDao {
 
@@ -276,14 +276,15 @@ public class SimpleCustomerDao implements CustomerDao {
     }
 }
 ```
+
 ![image](https://www.baeldung.com/wp-content/uploads/2019/04/direct-dip.png)
 
 #### Another Example
 
 ![image](https://www.baeldung.com/wp-content/uploads/2019/04/alternative-dip.png)
 
-- Another example of DIP is the `CustomerService` class. It has a dependency on `CustomerDao` class.
-- SimpleCustomerDao depends on CustomerDao on the implementation.
+-   Another example of DIP is the `CustomerService` class. It has a dependency on `CustomerDao` class.
+-   SimpleCustomerDao depends on CustomerDao on the implementation.
 
 ## References
 
@@ -291,10 +292,10 @@ public class SimpleCustomerDao implements CustomerDao {
 2. [SOLD by Visualstudiomagazine](https://visualstudiomagazine.com/articles/2013/04/01/solid-agile-development.aspx)
 3. [Single responsibility principle](https://www.baeldung.com/java-single-responsibility-principle)
 
-3. [Open-closed principle](https://www.baeldung.com/java-open-closed-principle)
+4. [Open-closed principle](https://www.baeldung.com/java-open-closed-principle)
 
-4. [Liskov substitution principle](https://www.baeldung.com/java-liskov-substitution-principle)
+5. [Liskov substitution principle](https://www.baeldung.com/java-liskov-substitution-principle)
 
-5. [Interface segregation principle](https://www.baeldung.com/java-interface-segregation)
+6. [Interface segregation principle](https://www.baeldung.com/java-interface-segregation)
 
-6. [Dependency Inversion Principle](https://www.baeldung.com/java-dependency-inversion-principle)
+7. [Dependency Inversion Principle](https://www.baeldung.com/java-dependency-inversion-principle)
