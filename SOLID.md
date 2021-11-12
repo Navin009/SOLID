@@ -1,17 +1,17 @@
 SOLID is a popular set of design principles that are used in object-oriented software development. It
 intends to make software designs more understandable, flexible, and maintainable.
 
-> #### SOLID is an acronym that stands for five key design principles:
->
-> 1.  **S**ingle responsibility principle
-> 2.  **O**pen-closed principle
-> 3.  **L**iskov substitution principle
-> 4.  **I**ntegration principle
-> 5.  **D**ependency inversion principle
+#### SOLID is an acronym that stands for five key design principles:
+
+1.  Single responsibility principle
+2.  Open-closed principle
+3.  Liskov substitution principle
+4.  Integration principle
+5.  Dependency inversion principle
 
 ## 1. Single responsibility principle (SRP)
 
-> This principle states that `each class should have one responsibility, one single purpose.` This means that a class will do only one job, which leads us to conclude it should have only one reason to change.
+This principle states that each class should have one responsibility, one single purpose. This means that a class will do only one job, which leads us to conclude it should have only one reason to change.
 
 ```
 public class TextManipulator {
@@ -53,7 +53,7 @@ This class has a lot of responsibilities, but it only has one reason to change. 
 
 ## 2. Open-closed principle (OCP)
 
-> `Software entities should be open for extension, but closed for modification.` It tells you to write your code so that you will be able to add new functionality without changing the existing code. That prevents situations in which a change to one of your classes also requires you to adapt all depending classes.
+Software entities should be open for extension, but closed for modification. It tells you to write your code so that you will be able to add new functionality without changing the existing code. That prevents situations in which a change to one of your classes also requires you to adapt all depending classes.
 
 ```
 public interface CalculatorOperation {
@@ -110,7 +110,7 @@ public class Calculator {
 
 ## 3. Liskov substitution principle (LSP)
 
-> `A class should be substitutable for its subclasses.` If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.
+A class should be substitutable for its subclasses. If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.
 
 ```
 public abstract class Account {
@@ -160,7 +160,7 @@ mySavingAccount.withdraw(new BigDecimal(100.00));
 
 ## 4. Interface segregation principle (ISP)
 
-> `Large interfaces should be made up of small interfaces.` This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
+Large interfaces should be made up of small interfaces. This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
 
 ```
 public interface Payment {
@@ -231,7 +231,7 @@ public class LoanPayment implements Loan {
 
 ## 5. Dependency inversion principle (DIP)
 
-> `High-level modules should not depend on low-level modules. Abstractions should not depend on details. Details should depend on abstractions.` This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
+High-level modules should not depend on low-level modules. Abstractions should not depend on details. Details should depend on abstractions. This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
 
 ```
 public class CustomerService {
@@ -283,7 +283,7 @@ public class SimpleCustomerDao implements CustomerDao {
 
 ![image](https://www.baeldung.com/wp-content/uploads/2019/04/alternative-dip.png)
 
--   Another example of DIP is the `CustomerService` class. It has a dependency on `CustomerDao` class.
+-   Another example of DIP is the CustomerService class. It has a dependency on CustomerDao class.
 -   SimpleCustomerDao depends on CustomerDao on the implementation.
 
 ## References
