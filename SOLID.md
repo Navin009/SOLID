@@ -164,14 +164,14 @@ mySavingAccount.withdraw(new BigDecimal(100.00));
 
 Large interfaces should be made up of small interfaces. This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
 
-```
+```java
 public interface Payment {
     Object status();
     List<Object> getPayments();
 }
 ```
 
-```
+```java
 public interface Bank extends Payment {
     void initiatePayments();
 }
@@ -182,7 +182,7 @@ public interface Loan extends Payment {
 }
 ```
 
-```
+```java
 public class BankPayment implements Bank {
 
     @Override
@@ -202,7 +202,7 @@ public class BankPayment implements Bank {
 }
 ```
 
-```
+```java
 public class LoanPayment implements Loan {
 
     @Override
@@ -235,7 +235,7 @@ public class LoanPayment implements Loan {
 
 High-level modules should not depend on low-level modules. Abstractions should not depend on details. Details should depend on abstractions. This principle is a way to make software more flexible, and to make it easier to change the behavior of the software. It is also a way to make software more maintainable.
 
-```
+```java
 public class CustomerService {
 
     private final CustomerDao customerDao;
@@ -252,7 +252,7 @@ public class CustomerService {
 }
 ```
 
-```
+```java
 public interface CustomerDao {
 
     Optional<Customer> findById(int id);
@@ -262,7 +262,7 @@ public interface CustomerDao {
 }
 ```
 
-```
+```java
 public class SimpleCustomerDao implements CustomerDao {
 
     // standard constructor / getter
