@@ -15,7 +15,7 @@ intends to make software designs more understandable, flexible, and maintainable
 
 This principle states that each class should have one responsibility, one single purpose. This means that a class will do only one job, which leads us to conclude it should have only one reason to change.
 
-```
+```java
 public class TextManipulator {
     private String text;
 
@@ -57,13 +57,13 @@ This class has a lot of responsibilities, but it only has one reason to change. 
 
 Software entities should be open for extension, but closed for modification. It tells you to write your code so that you will be able to add new functionality without changing the existing code. That prevents situations in which a change to one of your classes also requires you to adapt all depending classes.
 
-```
+```java
 public interface CalculatorOperation {
     void perform();
 }
 ```
 
-```
+```java
 public class Addition implements CalculatorOperation {
     private double left;
     private double right;
@@ -78,7 +78,7 @@ public class Addition implements CalculatorOperation {
 }
 ```
 
-```
+```java
 public class Division implements CalculatorOperation {
     private double left;
     private double right;
@@ -94,7 +94,7 @@ public class Division implements CalculatorOperation {
 }
 ```
 
-```
+```java
 public class Calculator {
 
     public void calculate(CalculatorOperation operation) {
@@ -114,14 +114,14 @@ public class Calculator {
 
 A class should be substitutable for its subclasses. If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.
 
-```
+```java
 public abstract class Account {
     protected abstract void deposit(BigDecimal amount);
     protected abstract void withdraw(BigDecimal amount);
 }
 ```
 
-```
+```java
 public class SavingAccount extends Account {
     @Override
     protected void deposit(BigDecimal amount) {
@@ -135,7 +135,7 @@ public class SavingAccount extends Account {
 }
 ```
 
-```
+```java
 public class FixedTermDepositAccount extends Account {
     @Override
     protected void deposit(BigDecimal amount) {
@@ -149,7 +149,7 @@ public class FixedTermDepositAccount extends Account {
 }
 ```
 
-```
+```java
 Account myFixedTermDepositAccount = new FixedTermDepositAccount();
 myFixedTermDepositAccount.deposit(new BigDecimal(1000.00));
 
